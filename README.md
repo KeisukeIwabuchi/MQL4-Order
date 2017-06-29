@@ -1,5 +1,5 @@
 # MQL4-Order
-ポジション情報を楽に扱うためのクラス
+Module for strictry selecting order.
 
 
 ## Requirement
@@ -7,25 +7,49 @@
 
 
 ## Install
-1. Order.mqhをダウンロード
-2. データフォルダを開き、/MQL4/Includes/mql4_modules/Order/Order.mqhとして保存
+1. Download Order.mqh
+2. Save the file to <terminal data folder>/MQL4/Includes/mql4_modules/Order/Order.mqh
 
 
 ## Usage
-Order.mqhをincludeして使用する。
-主な昨日は以下の通り。  
+Include: `#include <mql4_modules/Order/Order.mqh>`
+
+The main functions are as follow.
 
 ### getOrderCount
-保有中のポジション数を構造体OpenPositionsに格納する
+You can get the number of categorized orders with matching magic number.
+```cpp
+OpenPositions pos;
+Order::getOrderCount(pos, magic);
+
+Print("buy count = ", pos.open_buy);
+Print("sell count = ", pos.open_sell);
+
+```
 
 ### getOrderByTrades
-マジックナンバーを使用してトレーディングプールからポジション情報を取得する
+Select orders count with matching magic number from trading pool(opened and pending orders).
+```cpp
+OrderData data[10];
+if(!Order::getOrderByTrades(magic, data)) return;
+if(ArraySize(data) > 0) {
+   int ticket = data[0].ticket;
+}
+```
 
 ### getOrderByHistory
-マジックナンバーを使用してヒストリープールからポジション情報を取得する
+Select orders with matching magic number from history pool(closed and canceled orders).
+```cpp
+OrderData data[10];
+if(!Order::getOrderByHistory(magic, data)) return;
+double profit = data[0].profit;
+```
 
 ### getOrderByTicket
-チケット番号を使用してポジション情報を取得する
+Select orders with matching ticket number from history pool.
+```cpp
+OrderData data;
+if(!Order::getOrderByHistory(ticket, data)) return;
+double profit = data.profit;
+```
 
-
-※詳しくは各メソッドの機能はOrder.mqhのコメントを呼んでください。
