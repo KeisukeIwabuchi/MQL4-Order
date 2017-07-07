@@ -30,7 +30,7 @@ Print("sell count = ", pos.open_sell);
 ### getOrderByTrades
 Select orders count with matching magic number from trading pool(opened and pending orders).
 ```cpp
-OrderData data[10];
+OrderData data[];
 if(!Order::getOrderByTrades(magic, data)) return;
 if(ArraySize(data) > 0) {
    int ticket = data[0].ticket;
@@ -40,7 +40,7 @@ if(ArraySize(data) > 0) {
 ### getOrderByHistory
 Select orders with matching magic number from history pool(closed and canceled orders).
 ```cpp
-OrderData data[10];
+OrderData data[];
 if(!Order::getOrderByHistory(magic, data)) return;
 double profit = data[0].profit;
 ```
