@@ -8,7 +8,7 @@ Module for strictry selecting order.
 
 ## Install
 1. Download Order.mqh
-2. Save the file to <terminal data folder>/MQL4/Includes/mql4_modules/Order/Order.mqh
+2. Save the file to <terminal data folder>/MQL4/Include/mql4_modules/Order/Order.mqh
 
 
 ## Usage
